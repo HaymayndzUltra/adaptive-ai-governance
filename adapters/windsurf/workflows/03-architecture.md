@@ -1,0 +1,41 @@
+# Rule: Architecture Compliance
+
+**ID:** 03-architecture
+**Priority:** HIGH
+**Applies To:** standard, complex
+**Domain:** all
+
+---
+
+## Non-Negotiable Constraints
+
+1. **Respect Module Boundaries** — Do not create direct imports across module boundaries that violate the dependency graph. Use the established interface/API layer.
+
+2. **Dependency Direction** — Dependencies must flow inward (UI → Application → Domain → Infrastructure). Never import from a higher layer into a lower one.
+
+3. **Single Responsibility** — Each module, service, or component must have one clear responsibility. If a module does two things, split it.
+
+4. **Interface Segregation** — Depend on abstractions, not concretions. Use interfaces/protocols/abstract classes at module boundaries.
+
+5. **No Circular Dependencies** — If adding an import creates a cycle, refactor. Extract shared logic into a separate module.
+
+6. **Configuration Externalization** — Environment-specific values (URLs, feature flags, thresholds) must be externalized. No environment-specific logic in business code.
+
+7. **Event-Driven Where Appropriate** — Cross-cutting concerns (notifications, analytics, audit logging) should use events/observers, not direct coupling.
+
+8. **API Contract Stability** — Public APIs (REST, GraphQL, gRPC, exported functions) must not introduce breaking changes without versioning.
+
+## Depth Modulation
+
+### MODERATE (Standard pathway)
+- Verify dependency direction in new/changed files
+- Check for circular dependencies
+- Verify module boundaries are respected
+- Confirm no breaking API changes
+
+### DEEP (Complex pathway)
+- All moderate checks PLUS:
+- Full dependency graph audit for affected modules
+- Review event-driven patterns for new cross-cutting concerns
+- Validate interface segregation at new module boundaries
+- Architecture Decision Record (ADR) required for new patterns

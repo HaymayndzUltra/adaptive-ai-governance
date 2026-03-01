@@ -1,0 +1,46 @@
+# Rule: Code Quality Standards
+
+**ID:** 01-code-quality
+**Priority:** CRITICAL
+**Applies To:** all pathways
+**Domain:** all
+
+---
+
+## Non-Negotiable Constraints
+
+1. **Naming Conventions** — Use descriptive, intention-revealing names. No single-letter variables outside of loop counters. Follow the project's established naming convention (camelCase, snake_case, etc.).
+
+2. **Function Length** — No function should exceed 40 lines of logic. If it does, decompose it. Each function must do ONE thing.
+
+3. **File Organization** — Imports at the top, constants next, then types/interfaces, then exports. No imports in the middle of a file.
+
+4. **No Dead Code** — Do not leave commented-out code, unused imports, or unreachable branches. Delete them.
+
+5. **DRY Principle** — If you write the same logic more than twice, extract it. But do NOT over-abstract prematurely — wait for the third occurrence.
+
+6. **Consistent Formatting** — Follow the project's formatter configuration (Prettier, Black, gofmt, etc.). If none exists, propose one before writing code.
+
+7. **Type Safety** — Use the strongest type system available. Avoid `any`, `object`, or equivalent escape hatches unless explicitly justified.
+
+8. **Immutability by Default** — Prefer `const` over `let`, `readonly` where possible, immutable data structures. Mutate only when performance requires it.
+
+## Depth Modulation
+
+### SHALLOW (Trivial pathway)
+- Verify naming conventions
+- Ensure no dead code introduced
+- Check consistent formatting
+
+### MODERATE (Standard pathway)
+- All shallow checks PLUS:
+- Verify function decomposition
+- Check DRY compliance across changed files
+- Verify type safety in new code
+
+### DEEP (Complex pathway)
+- All moderate checks PLUS:
+- Review type safety across module boundaries
+- Verify immutability patterns
+- Audit file organization across all touched modules
+- Check for consistent error handling patterns

@@ -102,25 +102,33 @@ export async function initProject(opts) {
   } else {
     const adapterSrc = path.join(FRAMEWORK_ROOT, 'adapters', adapter);
 
-    if (adapterConfig.rulesDir) {
-      const rulesSrc = path.join(FRAMEWORK_ROOT, 'governance', 'rules');
-      const rulesDest = path.join(targetDir, adapterConfig.rulesDir);
-      copyDirRecursive(rulesSrc, rulesDest);
-      console.log(`   ✅ Rules copied to ${adapterConfig.rulesDir}`);
-    }
+    // Copy entire adapter directory structure (includes rules, prompts, workflows)
+    if (fs.existsSync(adapterSrc)) {
+      if (adapterConfig.rulesDir) {
+        const rulesSrc = path.join(adapterSrc, 'rules');
+        const rulesDest = path.join(targetDir, adapterConfig.rulesDir);
+        if (fs.existsSync(rulesSrc)) {
+          copyDirRecursive(rulesSrc, rulesDest);
+          console.log(`   ✅ Rules copied to ${adapterConfig.rulesDir}`);
+        }
+      }
 
-    if (adapterConfig.promptsDir && fs.existsSync(adapterSrc)) {
-      const promptsDest = path.join(targetDir, adapterConfig.promptsDir);
-      copyDirRecursive(adapterSrc, promptsDest);
-      console.log(`   ✅ Prompts/commands copied to ${adapterConfig.promptsDir}`);
-    }
+      if (adapterConfig.promptsDir) {
+        const promptsSrc = path.join(adapterSrc, path.basename(adapterConfig.promptsDir));
+        const promptsDest = path.join(targetDir, adapterConfig.promptsDir);
+        if (fs.existsSync(promptsSrc)) {
+          copyDirRecursive(promptsSrc, promptsDest);
+          console.log(`   ✅ Prompts/workflows copied to ${adapterConfig.promptsDir}`);
+        }
+      }
 
-    if (adapterConfig.bootFile) {
-      const bootSrc = path.join(FRAMEWORK_ROOT, 'governance', 'BOOT.md');
-      if (fs.existsSync(bootSrc)) {
-        const bootDest = path.join(targetDir, adapterConfig.bootFile);
-        fs.copyFileSync(bootSrc, bootDest);
-        console.log(`   ✅ Boot file created: ${adapterConfig.bootFile}`);
+      if (adapterConfig.bootFile) {
+        const bootSrc = path.join(FRAMEWORK_ROOT, 'governance', 'BOOT.md');
+        if (fs.existsSync(bootSrc)) {
+          const bootDest = path.join(targetDir, adapterConfig.bootFile);
+          fs.copyFileSync(bootSrc, bootDest);
+          console.log(`   ✅ Boot file created: ${adapterConfig.bootFile}`);
+        }
       }
     }
   }

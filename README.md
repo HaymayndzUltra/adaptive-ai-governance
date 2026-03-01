@@ -38,7 +38,7 @@ adaptive-ai-governance/
 │   └── status.js              # Governance status dashboard
 ├── governance/
 │   ├── BOOT.md                # Universal AI boot sequence
-│   ├── rules/                 # Tagged governance rules (10 rules)
+│   ├── rules/                 # Source governance rules (10 rules)
 │   │   ├── _index.yaml        # Rule registry with metadata
 │   │   ├── 01-code-quality.md
 │   │   ├── 02-security.md
@@ -64,9 +64,13 @@ adaptive-ai-governance/
 │       ├── audit-scorecard.md
 │       └── retrospective.md
 └── adapters/                  # AI assistant adapters
-    ├── cursor/                # Cursor rules + prompts
-    ├── claude/                # Claude Code commands
-    └── windsurf/              # Windsurf workflows
+    ├── cursor/
+    │   ├── rules/             # All 10 governance rules + master rule
+    │   └── prompts/           # Custom prompts for Cursor
+    ├── claude/
+    │   └── commands/          # Custom commands for Claude
+    └── windsurf/
+        └── workflows/         # All 10 governance rules + workflows
 ```
 
 ---
@@ -184,21 +188,24 @@ npx govern audit --scorecard
 
 ### Cursor
 After `govern init --adapter cursor`:
-- Governance rules are copied to `.cursor/rules/`
-- Custom prompts available: `/assess`, `/review`, `/audit`
+- Governance rules are copied to `.cursor/rules/` (10 rules + master governance file)
+- Custom prompts available in `.cursor/prompts/`: `/assess`, `/review`, `/audit`
 - The AI automatically follows the adaptive governance boot sequence
+- Rules are loaded directly by Cursor IDE
 
 ### Claude Code
 After `govern init --adapter claude`:
-- Commands available: `/assess`, `/review`, `/audit`
+- Commands available in `.claude/commands/`: `/assess`, `/review`, `/audit`
 - `CLAUDE.md` boot file created at project root
 - Claude reads governance context at conversation start
+- Governance rules in `.ai-governance/rules/`
 
 ### Windsurf
 After `govern init --adapter windsurf`:
-- Workflows available: `/assess`, `/review`, `/audit`
-- Rules copied to `.windsurf/rules/`
-- Governance context loaded automatically
+- Workflows available in `.windsurf/workflows/`: `/assess`, `/review`, `/audit`
+- Governance rules copied to `.windsurf/workflows/` (10 rules + master governance file)
+- Governance context loaded automatically via workflows
+- Rules are loaded directly by Windsurf IDE
 
 ### Other AI Assistants
 The framework works with any AI assistant that reads project files. Point your assistant to `.ai-governance/BOOT.md` as the entry point.
