@@ -1,0 +1,36 @@
+# Rule: Performance Guidelines
+
+**ID:** 06-performance
+**Priority:** MEDIUM
+**Applies To:** standard, complex
+**Domain:** all
+
+---
+
+## Non-Negotiable Constraints
+
+1. **No N+1 Queries** — Database access patterns must batch or join. Never issue one query per item in a loop.
+
+2. **Pagination Required** — Any endpoint or query that returns a list must support pagination. Never return unbounded result sets.
+
+3. **Index Awareness** — New queries must use indexed columns for filtering and sorting. Propose indexes for new query patterns.
+
+4. **Bundle Size Discipline** — Frontend changes must not increase bundle size by more than 10% without justification. Use code splitting and lazy loading.
+
+5. **Caching Strategy** — Frequently accessed, slowly changing data must be cached. Define TTL and invalidation strategy.
+
+6. **No Blocking Operations** — In async environments, never use synchronous I/O, blocking sleep, or CPU-intensive computation on the main thread.
+
+## Depth Modulation
+
+### MODERATE (Standard pathway)
+- Check for N+1 queries in new data access code
+- Verify pagination on new list endpoints
+- Check bundle impact of new frontend dependencies
+
+### DEEP (Complex pathway)
+- All moderate PLUS:
+- Performance benchmarks for new critical paths
+- Cache strategy review for new data flows
+- Database query plan analysis for new query patterns
+- Load test under projected traffic

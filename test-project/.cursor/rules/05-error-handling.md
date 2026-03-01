@@ -1,0 +1,42 @@
+# Rule: Error Handling
+
+**ID:** 05-error-handling
+**Priority:** HIGH
+**Applies To:** all pathways
+**Domain:** all
+
+---
+
+## Non-Negotiable Constraints
+
+1. **No Silent Failures** — Every catch block must either handle the error meaningfully or re-throw it. Empty catch blocks are forbidden.
+
+2. **Structured Error Types** — Use typed/classed errors with error codes, not raw strings. Errors must be machine-parseable and human-readable.
+
+3. **Error Boundaries** — UI components must have error boundaries. Backend services must have top-level error handlers. Unhandled rejections must be caught.
+
+4. **Graceful Degradation** — When a non-critical dependency fails, the system should degrade gracefully rather than crash entirely.
+
+5. **User-Facing Messages** — Never expose stack traces, internal paths, or SQL errors to end users. Return sanitized, actionable error messages.
+
+6. **Logging** — All errors must be logged with sufficient context (timestamp, request ID, user context, stack trace) for debugging. Use structured logging (JSON format).
+
+7. **Retry Logic** — Transient failures (network timeouts, rate limits) must use exponential backoff with jitter. Set max retries. Never retry non-idempotent operations blindly.
+
+## Depth Modulation
+
+### SHALLOW (Trivial pathway)
+- Verify no silent failures in changed code
+- Check that new error paths have logging
+
+### MODERATE (Standard pathway)
+- All shallow PLUS:
+- Verify structured error types for new error scenarios
+- Check error boundaries on new UI components
+- Verify retry logic for new external calls
+
+### DEEP (Complex pathway)
+- All moderate PLUS:
+- Review graceful degradation strategy across affected services
+- Verify circuit breaker patterns for new service dependencies
+- Audit error propagation across module boundaries

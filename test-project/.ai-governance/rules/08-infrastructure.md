@@ -1,0 +1,39 @@
+# Rule: Infrastructure Rules
+
+**ID:** 08-infrastructure
+**Priority:** CRITICAL
+**Applies To:** infrastructure, complex
+**Domain:** devops
+
+---
+
+## Non-Negotiable Constraints
+
+1. **Infrastructure as Code** — All infrastructure must be defined in code (Terraform, CloudFormation, Pulumi, etc.). No manual console changes in production.
+
+2. **Environment Parity** — Dev, staging, and production must use the same infrastructure definitions with environment-specific variables only.
+
+3. **Rollback Procedure** — Every deployment must have a documented, tested rollback procedure. Blue-green or canary deployments preferred.
+
+4. **Secrets in Vault** — Infrastructure secrets must be stored in a secrets manager (AWS Secrets Manager, HashiCorp Vault, etc.). Never in IaC state files or environment files committed to git.
+
+5. **Monitoring & Alerting** — New infrastructure components must include health checks, metrics, and alerts. Define SLOs before deploying.
+
+6. **Blast Radius Limitation** — Changes must be scoped to minimize blast radius. Use feature flags, gradual rollouts, and circuit breakers.
+
+7. **Backup & Recovery** — Data stores must have automated backups with tested recovery procedures. Define RPO and RTO.
+
+## Depth Modulation
+
+### MODERATE (Infrastructure pathway)
+- Verify IaC compliance for all changes
+- Confirm rollback procedure exists
+- Check secrets management
+- Verify monitoring for new components
+
+### DEEP (Complex pathway)
+- All moderate PLUS:
+- Full disaster recovery test plan
+- Capacity planning for new infrastructure
+- Security group / network policy audit
+- Cost impact analysis

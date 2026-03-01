@@ -1,0 +1,40 @@
+# Rule: Testing Standards
+
+**ID:** 04-testing
+**Priority:** HIGH
+**Applies To:** standard, complex
+**Domain:** all
+
+---
+
+## Non-Negotiable Constraints
+
+1. **No Untested Public APIs** — Every exported function, endpoint, or component must have at least one test covering the happy path.
+
+2. **Edge Cases** — Test boundary conditions, empty inputs, null values, and error paths. Not just the golden path.
+
+3. **Test Isolation** — Tests must not depend on external services, network calls, or shared mutable state. Use mocks, stubs, or test doubles.
+
+4. **Deterministic Tests** — Tests must produce the same result every time. No time-dependent, order-dependent, or flaky tests.
+
+5. **Descriptive Test Names** — Test names must describe the scenario and expected outcome: `should_return_404_when_user_not_found`, not `test1`.
+
+6. **No Test Logic** — Tests should be simple assertions. No conditionals, loops, or complex setup in test bodies. Extract shared setup into fixtures/helpers.
+
+7. **Regression Tests for Bugs** — Every bug fix must include a regression test that fails without the fix and passes with it.
+
+## Depth Modulation
+
+### MODERATE (Standard pathway)
+- Unit tests for all new public functions
+- Integration test for new API endpoints
+- Regression test for any bug fix
+- Minimum 80% line coverage on new code
+
+### DEEP (Complex pathway)
+- All moderate checks PLUS:
+- End-to-end tests for critical user flows
+- Performance/load tests for new endpoints under expected traffic
+- Contract tests for new service-to-service interfaces
+- Chaos/failure scenario tests for infrastructure changes
+- Minimum 90% line coverage on new code

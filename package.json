@@ -1,0 +1,38 @@
+{
+  "name": "adaptive-ai-governance",
+  "version": "1.0.0",
+  "description": "Adaptive AI Governance Framework — AWS AI-DLC inspired, complexity-routed, depth-modulated workflow system for AI coding assistants",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "govern": "./bin/govern.js"
+  },
+  "scripts": {
+    "start": "node bin/govern.js",
+    "init": "node bin/govern.js init",
+    "assess": "node bin/govern.js assess",
+    "audit": "node bin/govern.js audit",
+    "status": "node bin/govern.js status"
+  },
+  "keywords": [
+    "ai-governance",
+    "adaptive-workflow",
+    "context-engineering",
+    "ai-dlc",
+    "cursor",
+    "claude-code",
+    "windsurf",
+    "coding-assistant"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "inquirer": "^9.3.7",
+    "yaml": "^2.5.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

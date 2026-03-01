@@ -1,0 +1,80 @@
+# Adaptive AI Governance — Rule Registry
+# Each rule has metadata for dynamic loading based on pathway and domain.
+#
+# Fields:
+#   file:        Filename in this directory
+#   name:        Human-readable rule name
+#   applies-to:  Comma-separated list: all, trivial, standard, complex, infrastructure
+#   domain:      Comma-separated list: backend, frontend, database, devops, all
+#   priority:    critical, high, medium, low
+#   description: One-line summary
+
+- file: 01-code-quality.md
+  name: Code Quality Standards
+  applies-to: all
+  domain: all
+  priority: critical
+  description: Coding style, naming conventions, formatting, and readability rules
+
+- file: 02-security.md
+  name: Security Requirements
+  applies-to: standard, complex, infrastructure
+  domain: all
+  priority: critical
+  description: Authentication, authorization, input validation, secrets management
+
+- file: 03-architecture.md
+  name: Architecture Compliance
+  applies-to: standard, complex
+  domain: all
+  priority: high
+  description: Module boundaries, dependency direction, design patterns
+
+- file: 04-testing.md
+  name: Testing Standards
+  applies-to: standard, complex
+  domain: all
+  priority: high
+  description: Test coverage requirements, testing strategies, edge cases
+
+- file: 05-error-handling.md
+  name: Error Handling
+  applies-to: all
+  domain: all
+  priority: high
+  description: Error boundaries, logging, graceful degradation
+
+- file: 06-performance.md
+  name: Performance Guidelines
+  applies-to: standard, complex
+  domain: all
+  priority: medium
+  description: Query optimization, caching, bundle size, lazy loading
+
+- file: 07-documentation.md
+  name: Documentation Standards
+  applies-to: standard, complex
+  domain: all
+  priority: medium
+  description: API docs, README updates, inline comments, changelog
+
+- file: 08-infrastructure.md
+  name: Infrastructure Rules
+  applies-to: infrastructure, complex
+  domain: devops
+  priority: critical
+  description: IaC patterns, environment parity, rollback procedures
+
+- file: 09-data-integrity.md
+  name: Data Integrity
+  applies-to: standard, complex
+  domain: database, backend
+  priority: critical
+  description: Migration safety, backup procedures, schema validation
+
+- file: 10-accessibility.md
+  name: Accessibility Standards
+  applies-to: standard, complex
+  domain: frontend
+  priority: medium
+  description: WCAG compliance, screen reader support, keyboard navigation

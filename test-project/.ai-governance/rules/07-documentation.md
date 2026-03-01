@@ -1,0 +1,33 @@
+# Rule: Documentation Standards
+
+**ID:** 07-documentation
+**Priority:** MEDIUM
+**Applies To:** standard, complex
+**Domain:** all
+
+---
+
+## Non-Negotiable Constraints
+
+1. **API Documentation** — Every public API (REST, GraphQL, library export) must have up-to-date documentation including request/response schemas and examples.
+
+2. **README Currency** — If a change affects setup, configuration, or usage, the README must be updated in the same PR.
+
+3. **Architecture Decision Records** — Significant architectural decisions must be recorded as ADRs with context, decision, and consequences.
+
+4. **Changelog** — User-facing changes must be recorded in the changelog with clear, non-technical descriptions.
+
+5. **Inline Comments** — Comment the WHY, not the WHAT. Complex business logic, workarounds, and non-obvious decisions need inline explanation.
+
+## Depth Modulation
+
+### MODERATE (Standard pathway)
+- Update API docs for changed endpoints
+- Update README if setup/usage changed
+- Add changelog entry for user-facing changes
+
+### DEEP (Complex pathway)
+- All moderate PLUS:
+- Write ADR for new architectural decisions
+- Update architecture diagrams if system structure changed
+- Review and update onboarding documentation

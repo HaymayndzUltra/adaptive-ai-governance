@@ -1,0 +1,9 @@
+node_modules/
+.ai-governance/state.json
+.ai-governance/assessments/
+.ai-governance/plans/
+.ai-governance/audits/
+.ai-governance/audit-log.md
+*.log
+.DS_Store
+Thumbs.db
