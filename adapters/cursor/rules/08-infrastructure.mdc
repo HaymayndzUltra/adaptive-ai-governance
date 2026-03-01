@@ -1,11 +1,15 @@
+---
+description: "Infrastructure Rules — IaC, rollback procedures, monitoring, secrets vault, blast radius"
+globs: "**/Dockerfile*, **/docker-compose*, **/*.tf, **/*.yaml, **/*.yml, **/infrastructure/**, **/deploy/**"
+alwaysApply: false
+---
+
 # Rule: Infrastructure Rules
 
 **ID:** 08-infrastructure
 **Priority:** CRITICAL
 **Applies To:** infrastructure, complex
 **Domain:** devops
-
----
 
 ## Non-Negotiable Constraints
 

@@ -1,11 +1,15 @@
+---
+description: "Performance Guidelines — N+1 queries, pagination, caching, bundle size"
+globs: "**/*"
+alwaysApply: false
+---
+
 # Rule: Performance Guidelines
 
 **ID:** 06-performance
 **Priority:** MEDIUM
 **Applies To:** standard, complex
 **Domain:** all
-
----
 
 ## Non-Negotiable Constraints
 

@@ -1,11 +1,15 @@
+---
+description: "Documentation Standards — API docs, README, ADRs, changelog, inline comments"
+globs: "**/*.md, **/README*, **/CHANGELOG*, **/docs/**"
+alwaysApply: false
+---
+
 # Rule: Documentation Standards
 
 **ID:** 07-documentation
 **Priority:** MEDIUM
 **Applies To:** standard, complex
 **Domain:** all
-
----
 
 ## Non-Negotiable Constraints
 

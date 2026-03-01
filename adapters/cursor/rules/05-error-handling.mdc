@@ -1,11 +1,15 @@
+---
+description: "Error Handling — No silent failures, structured errors, graceful degradation, retry logic"
+globs: "**/*"
+alwaysApply: true
+---
+
 # Rule: Error Handling
 
 **ID:** 05-error-handling
 **Priority:** HIGH
 **Applies To:** all pathways
 **Domain:** all
-
----
 
 ## Non-Negotiable Constraints
 

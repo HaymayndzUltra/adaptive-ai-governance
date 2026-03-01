@@ -1,11 +1,15 @@
+---
+description: "Security Requirements — Secrets, input validation, auth, injection prevention, XSS, CSRF"
+globs: "**/*"
+alwaysApply: true
+---
+
 # Rule: Security Requirements
 
 **ID:** 02-security
 **Priority:** CRITICAL
 **Applies To:** standard, complex, infrastructure
 **Domain:** all
-
----
 
 ## Non-Negotiable Constraints
 

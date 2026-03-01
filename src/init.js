@@ -10,21 +10,25 @@ const ADAPTER_MAP = {
   cursor: {
     rulesDir: '.cursor/rules',
     promptsDir: '.cursor/prompts',
+    workflowsDir: null,
     bootFile: null,
   },
   claude: {
     rulesDir: null,
     promptsDir: '.claude/commands',
+    workflowsDir: null,
     bootFile: 'CLAUDE.md',
   },
   windsurf: {
     rulesDir: '.windsurf/rules',
-    promptsDir: '.windsurf/workflows',
+    promptsDir: null,
+    workflowsDir: '.windsurf/workflows',
     bootFile: null,
   },
   generic: {
     rulesDir: null,
     promptsDir: null,
+    workflowsDir: null,
     bootFile: null,
   },
 };
@@ -102,8 +106,9 @@ export async function initProject(opts) {
   } else {
     const adapterSrc = path.join(FRAMEWORK_ROOT, 'adapters', adapter);
 
-    // Copy entire adapter directory structure (includes rules, prompts, workflows)
+    // Copy adapter files to their correct IDE-specific directories
     if (fs.existsSync(adapterSrc)) {
+      // Rules: persistent context loaded by the IDE (Cursor: .mdc, Windsurf: .md)
       if (adapterConfig.rulesDir) {
         const rulesSrc = path.join(adapterSrc, 'rules');
         const rulesDest = path.join(targetDir, adapterConfig.rulesDir);
@@ -113,15 +118,27 @@ export async function initProject(opts) {
         }
       }
 
+      // Prompts: slash-command prompts (Cursor: .cursor/prompts/)
       if (adapterConfig.promptsDir) {
-        const promptsSrc = path.join(adapterSrc, path.basename(adapterConfig.promptsDir));
+        const promptsSrc = path.join(adapterSrc, 'prompts');
         const promptsDest = path.join(targetDir, adapterConfig.promptsDir);
         if (fs.existsSync(promptsSrc)) {
           copyDirRecursive(promptsSrc, promptsDest);
-          console.log(`   ✅ Prompts/workflows copied to ${adapterConfig.promptsDir}`);
+          console.log(`   ✅ Prompts copied to ${adapterConfig.promptsDir}`);
         }
       }
 
+      // Workflows: multi-step slash commands (Windsurf: .windsurf/workflows/)
+      if (adapterConfig.workflowsDir) {
+        const workflowsSrc = path.join(adapterSrc, 'workflows');
+        const workflowsDest = path.join(targetDir, adapterConfig.workflowsDir);
+        if (fs.existsSync(workflowsSrc)) {
+          copyDirRecursive(workflowsSrc, workflowsDest);
+          console.log(`   ✅ Workflows copied to ${adapterConfig.workflowsDir}`);
+        }
+      }
+
+      // Boot file: project-root entry point (Claude: CLAUDE.md)
       if (adapterConfig.bootFile) {
         const bootSrc = path.join(FRAMEWORK_ROOT, 'governance', 'BOOT.md');
         if (fs.existsSync(bootSrc)) {

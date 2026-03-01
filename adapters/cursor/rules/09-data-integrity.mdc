@@ -1,11 +1,15 @@
+---
+description: "Data Integrity — Migration safety, schema validation, referential integrity, audit trails"
+globs: "**/migrations/**, **/models/**, **/*.sql, **/schema/**"
+alwaysApply: false
+---
+
 # Rule: Data Integrity
 
 **ID:** 09-data-integrity
 **Priority:** CRITICAL
 **Applies To:** standard, complex
 **Domain:** database, backend
-
----
 
 ## Non-Negotiable Constraints
 

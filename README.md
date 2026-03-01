@@ -65,12 +65,13 @@ adaptive-ai-governance/
 │       └── retrospective.md
 └── adapters/                  # AI assistant adapters
     ├── cursor/
-    │   ├── rules/             # All 10 governance rules + master rule
-    │   └── prompts/           # Custom prompts for Cursor
+    │   ├── rules/             # .mdc files with YAML frontmatter (10 rules + master)
+    │   └── prompts/           # Slash-command prompts (/assess, /review, /audit)
     ├── claude/
-    │   └── commands/          # Custom commands for Claude
+    │   └── commands/          # Claude Code slash commands
     └── windsurf/
-        └── workflows/         # All 10 governance rules + workflows
+        ├── rules/             # .md governance rules (persistent context)
+        └── workflows/         # .md multi-step workflows (/assess, /review, /audit)
 ```
 
 ---
@@ -141,7 +142,7 @@ The framework routes every task through one of four adaptive pathways based on a
 
 **Option A: Clone into your project (recommended)**
 ```bash
-git clone https://github.com/your-org/adaptive-ai-governance.git .ai-governance
+git clone https://github.com/HaymayndzUltra/adaptive-ai-governance.git .ai-governance
 cd .ai-governance && npm install
 ```
 
@@ -188,24 +189,26 @@ npx govern audit --scorecard
 
 ### Cursor
 After `govern init --adapter cursor`:
-- Governance rules are copied to `.cursor/rules/` (10 rules + master governance file)
-- Custom prompts available in `.cursor/prompts/`: `/assess`, `/review`, `/audit`
-- The AI automatically follows the adaptive governance boot sequence
-- Rules are loaded directly by Cursor IDE
+- **Rules** → `.cursor/rules/*.mdc` (10 governance rules + master rule, all with YAML frontmatter)
+- **Prompts** → `.cursor/prompts/` (`/assess`, `/review`, `/audit`)
+- `.mdc` format = Markdown with YAML frontmatter (`description`, `globs`, `alwaysApply`)
+- CRITICAL rules (`01-code-quality`, `02-security`, `05-error-handling`) have `alwaysApply: true`
+- Domain-specific rules use `globs` patterns (e.g., `**/*.tsx` for accessibility)
 
 ### Claude Code
 After `govern init --adapter claude`:
-- Commands available in `.claude/commands/`: `/assess`, `/review`, `/audit`
-- `CLAUDE.md` boot file created at project root
+- **Commands** → `.claude/commands/` (`/assess`, `/review`, `/audit`)
+- **Boot file** → `CLAUDE.md` at project root
 - Claude reads governance context at conversation start
-- Governance rules in `.ai-governance/rules/`
+- Governance rules referenced from `.ai-governance/rules/`
 
 ### Windsurf
 After `govern init --adapter windsurf`:
-- Workflows available in `.windsurf/workflows/`: `/assess`, `/review`, `/audit`
-- Governance rules copied to `.windsurf/workflows/` (10 rules + master governance file)
-- Governance context loaded automatically via workflows
-- Rules are loaded directly by Windsurf IDE
+- **Rules** → `.windsurf/rules/*.md` (10 governance rules + master rule, persistent context)
+- **Workflows** → `.windsurf/workflows/*.md` (`/assess`, `/review`, `/audit` slash commands)
+- Rules and workflows are **separate directories** (per official Windsurf docs)
+- Rules = persistent context loaded by Cascade automatically
+- Workflows = multi-step processes invoked via `/slash-command`
 
 ### Other AI Assistants
 The framework works with any AI assistant that reads project files. Point your assistant to `.ai-governance/BOOT.md` as the entry point.

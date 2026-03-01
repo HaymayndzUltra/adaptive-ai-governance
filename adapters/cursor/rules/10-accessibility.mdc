@@ -1,11 +1,15 @@
+---
+description: "Accessibility Standards — Semantic HTML, keyboard nav, ARIA, color contrast, form a11y"
+globs: "**/*.tsx, **/*.jsx, **/*.vue, **/*.html, **/*.svelte, **/components/**"
+alwaysApply: false
+---
+
 # Rule: Accessibility Standards
 
 **ID:** 10-accessibility
 **Priority:** MEDIUM
 **Applies To:** standard, complex
 **Domain:** frontend
-
----
 
 ## Non-Negotiable Constraints
 

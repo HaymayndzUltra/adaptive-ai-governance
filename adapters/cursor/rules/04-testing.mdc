@@ -1,11 +1,15 @@
+---
+description: "Testing Standards — Coverage, isolation, edge cases, regression tests"
+globs: "**/*.test.*, **/*.spec.*, **/__tests__/**"
+alwaysApply: false
+---
+
 # Rule: Testing Standards
 
 **ID:** 04-testing
 **Priority:** HIGH
 **Applies To:** standard, complex
 **Domain:** all
-
----
 
 ## Non-Negotiable Constraints
 

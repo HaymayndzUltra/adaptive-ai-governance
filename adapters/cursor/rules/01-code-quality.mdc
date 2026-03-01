@@ -1,11 +1,15 @@
+---
+description: "Code Quality Standards — Naming, function length, DRY, type safety, formatting"
+globs: "**/*"
+alwaysApply: true
+---
+
 # Rule: Code Quality Standards
 
 **ID:** 01-code-quality
 **Priority:** CRITICAL
 **Applies To:** all pathways
 **Domain:** all
-
----
 
 ## Non-Negotiable Constraints
 
